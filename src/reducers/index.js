@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import itemsReducer from './itemsReducer';
-// import deleteItemReducer from './deleteItemReducer';
+import listReducer from './listReducer';
+import listNameReducer from './listNameReducer';
 
 const rootReducer = combineReducers({
-  items: itemsReducer,
-  //   deleteItem: deleteItemReducer,
+  listName: listNameReducer,
+  listItems: listReducer,
 });
 
 export default rootReducer;

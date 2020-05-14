@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './components/Header';
 import InputSection from './components/InputSection';
-import TodoList from './components/TodoList';
+import DisplayTodoList from './components/DisplayTodoList';
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <br />
       <InputSection />
       <br />
-      <TodoList />
+      <DisplayTodoList />
     </div>
   );
 }
