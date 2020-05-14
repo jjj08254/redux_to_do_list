@@ -1,10 +1,15 @@
 import * as actionTypes from './actionTypes';
 
-export default function pickListAction(listName) {
-  console.log('pick');
-  console.log(listName);
+export function pickListAction(listName) {
   return {
     type: actionTypes.LIST_PICK,
     payload: listName,
+  };
+}
+
+export function pageRefreshAction(listId) {
+  return {
+    type: actionTypes.PAGE_REFRESH,
+    payload: listId,
   };
 }

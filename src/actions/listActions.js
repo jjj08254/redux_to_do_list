@@ -20,3 +20,16 @@ export function checkItemAction(itemGotChecked) {
     payload: itemGotChecked,
   };
 }
+
+export function resetItemAction() {
+  return {
+    type: actionTypes.RESET_ITEM,
+  };
+}
+
+export function syncItemAction(existingItems) {
+  return {
+    type: actionTypes.SYNC_ITEM,
+    payload: existingItems,
+  };
+}

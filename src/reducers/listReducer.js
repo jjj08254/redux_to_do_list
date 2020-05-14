@@ -58,6 +58,20 @@ function listReducer(state = defaultState, action) {
       return nextState;
     }
 
+    case actionTypes.SYNC_ITEM: {
+      const itemsThatAlreadyExist = action.payload;
+      console.log(itemsThatAlreadyExist);
+      if (!itemsThatAlreadyExist.length) {
+        return [...defaultState];
+      }
+      const syncItems = [...itemsThatAlreadyExist];
+      return syncItems;
+    }
+
+    case actionTypes.RESET_ITEM: {
+      return defaultState;
+    }
+
     default: {
       return state;
     }

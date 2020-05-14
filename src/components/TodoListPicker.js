@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, FormGroup, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import pickListAction from '../actions/listPickerAction';
+import { pickListAction } from '../actions/listPickerAction';
 
 export class TodoListPicker extends Component {
   handleSubmit = (e) => {
@@ -17,6 +17,7 @@ export class TodoListPicker extends Component {
       <Form inline onSubmit={this.handleSubmit}>
         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
           <Input
+            autoComplete="off"
             type="text"
             name="listName"
             placeholder="Enter a List Name"
