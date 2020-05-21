@@ -22,10 +22,12 @@ class App extends React.Component {
       this.props.syncItemAction([]);
     }
 
-    this.ref = base.syncState(`${this.props.listName}/list`, {
-      context: this,
-      state: 'listItems',
-    });
+    // this.ref = base.syncState(`${action.payload}/list`, {
+    //   context: this,
+    //   state: 'listItems',
+    // });
+
+    // this.setState({ listItems: this.props.listItems });
     // this.props.syncItemAction(this.state.listItems);
   }
 
@@ -38,8 +40,7 @@ class App extends React.Component {
   }
 
   componentWillUnmount() {
-    base.removeBinding(this.ref);
-    this.props.resetItemAction();
+    // base.removeBinding(this.ref);
   }
 
   render() {
