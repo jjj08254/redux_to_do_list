@@ -60,7 +60,6 @@ function listReducer(state = defaultState, action) {
 
     case actionTypes.SYNC_ITEM: {
       const itemsThatAlreadyExist = action.payload;
-      console.log(itemsThatAlreadyExist);
       if (!itemsThatAlreadyExist.length) {
         return [...defaultState];
       }

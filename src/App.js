@@ -9,38 +9,63 @@ import { resetItemAction, syncItemAction } from './actions/listActions';
 import { pageRefreshAction } from './actions/listPickerAction';
 
 class App extends React.Component {
-  // state = {
-  //   listItems: {},
-  // };
+  state = {
+    listItems: {},
+  };
+
+  pageLoadFinished = false;
 
   componentDidMount() {
     const action = this.props.pageRefreshAction(this.props.match.params.listId);
-    const itemsFromLocal = JSON.parse(localStorage.getItem(action.payload));
-    if (itemsFromLocal) {
-      this.props.syncItemAction(itemsFromLocal);
-    } else {
-      this.props.syncItemAction([]);
-    }
 
-    // this.ref = base.syncState(`${action.payload}/list`, {
-    //   context: this,
-    //   state: 'listItems',
-    // });
+    this.ref = base.syncState(`${action.payload}/listItems`, {
+      context: this,
+      state: 'listItems',
+    });
 
-    // this.setState({ listItems: this.props.listItems });
+    base.fetch(action.payload, { context: this }).then((storeData) => {
+      if (!storeData.listItems) {
+        this.props.syncItemAction([]);
+        this.pageLoadFinished = true;
+        return;
+      }
+      if (storeData.listItems.length) {
+        const newStore = this.props.syncItemAction(storeData.listItems);
+        this.setState({ listItems: newStore.payload });
+        this.pageLoadFinished = true;
+      }
+    });
+
+    //   const itemsFromLocal = JSON.parse(localStorage.getItem(action.payload));
+    //   if (itemsFromLocal) {
+    //     this.props.syncItemAction(itemsFromLocal);
+    //   } else {
+    //     this.props.syncItemAction([]);
+    //   }
+
     // this.props.syncItemAction(this.state.listItems);
   }
 
   componentDidUpdate() {
-    // this.setState({ listItems: this.props.listItems });
-    localStorage.setItem(
-      `${this.props.listName}`,
-      JSON.stringify(this.props.listItems)
-    );
+    if (this.pageLoadFinished) {
+      // let prevState = ;
+      // let newState;
+      // if ()
+      // const prevState = [...this.state.listItems];
+      // this.props.syncItemAction(prevState);
+
+      this.setState({ listItems: this.props.listItems });
+      // console.log('update');
+    }
+
+    // localStorage.setItem(
+    //   `${this.props.listName}`,
+    //   JSON.stringify(this.props.listItems)
+    // );
   }
 
   componentWillUnmount() {
-    // base.removeBinding(this.ref);
+    base.removeBinding(this.ref);
   }
 
   render() {

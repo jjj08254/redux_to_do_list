@@ -15,10 +15,12 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "reactstrap": "^8.4.1",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "serve": "^11.3.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "dev": "react-scripts start",
+    "start": "serve --single ./build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -40,6 +42,5 @@
   },
   "devDependencies": {
     "node-sass": "^4.14.1"
-  },
-  "homepage": "/redux_to_do_list"
+  }
 }
